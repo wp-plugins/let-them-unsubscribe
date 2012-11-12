@@ -235,8 +235,8 @@ class IW_Unsubscribe_Options_Page {
 
 		}
 
-		$valid_input['info-text'] = esc_textarea( $input['info-text'] );
-		$valid_input['end-text'] = esc_textarea( $input['end-text'] );
+		$valid_input['info-text'] = sanitize_text_field( $input['info-text'] );
+		$valid_input['end-text'] = sanitize_text_field( $input['end-text'] );
 
 
 		return $valid_input;
