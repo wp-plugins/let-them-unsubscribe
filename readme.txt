@@ -39,7 +39,8 @@ No questions for the moment
 
 == Screenshots ==
 
-No screenshots for the moment
+1. Options page
+2. Page from where users can delete their own profiles 
 
 == Changelog ==
 
