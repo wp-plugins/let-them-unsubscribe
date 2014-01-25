@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Let Them Unsubscribe\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-25 22:21+0100\n"
-"PO-Revision-Date: 2014-01-25 22:23+0100\n"
+"PO-Revision-Date: 2014-01-25 22:24+0100\n"
 "Last-Translator: Ignacio <igmoweb@gmail.com>\n"
 "Language-Team: Ignacio Cruz\n"
 "MIME-Version: 1.0\n"
@@ -18,77 +18,77 @@ msgstr ""
 
 #: ../let-them-unsubscribe.php:93
 msgid "Let Them Unsubscribe"
-msgstr "Let Them Unsubscribe"
+msgstr ""
 
 #: ../let-them-unsubscribe.php:94
 msgid "Let Them Unsubscribe Settings"
-msgstr "Opciones de Let Them Unsubscribe "
+msgstr ""
 
 #: ../let-them-unsubscribe.php:95
 #: ../let-them-unsubscribe.php:106
 msgid "You do not have enough permissions to access to this page"
-msgstr "No tienes suficientes permisos para acceder a esta página"
+msgstr ""
 
 #: ../let-them-unsubscribe.php:104
 #: ../let-them-unsubscribe.php:105
 msgid "Delete your account"
-msgstr "Eliminar tu perfil"
+msgstr ""
 
 #: ../admin/settings-menu.php:22
 msgid "Users who can delete their profiles"
-msgstr "Usuarios que pueden borrar sus perfiles"
+msgstr ""
 
 #: ../admin/settings-menu.php:23
 msgid "Select one or more roles"
-msgstr "Selecciona uno o más roles"
+msgstr ""
 
 #: ../admin/settings-menu.php:25
 msgid "Captions"
-msgstr "Textos"
+msgstr ""
 
 #: ../admin/settings-menu.php:26
 msgid "Text showed on Delete Profile Page"
-msgstr "Texto mostrado en la página de borrado de perfil"
+msgstr ""
 
 #: ../admin/settings-menu.php:27
 msgid "Text showed once the user has deleted his profile"
-msgstr "Texto mostrado una vez el usuario ha aceptado borrar su perfil"
+msgstr ""
 
 #: ../admin/settings-menu.php:38
 msgid "Save Settings"
-msgstr "Guardar opciones"
+msgstr ""
 
 #: ../admin/settings-menu.php:96
 msgid "<strong>Info text</strong> field must not be empty"
-msgstr "El campo <strong>texto de información</strong> no puede estar vacío"
+msgstr ""
 
 #: ../admin/settings-menu.php:101
 msgid "<strong>End text</strong> field must not be empty"
-msgstr "El campo <strong>texto al borrar la cuenta</strong> no puede estar vacío"
+msgstr ""
 
 #: ../admin/unsubscribe-menu.php:18
 msgid "Are you sure?"
-msgstr "¿Estás seguro?"
+msgstr ""
 
 #: ../admin/unsubscribe-menu.php:23
 msgid "Yes, delete my account"
-msgstr "Sí, eliminar mi perfil"
+msgstr ""
 
 #: ../admin/unsubscribe-menu.php:47
 msgid "Go to home page"
-msgstr "Ir a página de inicio"
+msgstr ""
 
 #: ../admin/user-profile.php:9
 msgid "Delete my account"
-msgstr "Eliminar mi perfil"
+msgstr ""
 
 #: ../inc/helpers.php:8
 msgid "Attention: All your data will be deleted!"
-msgstr "Atención: Se borrarán todos tus datos"
+msgstr ""
 
 #: ../inc/helpers.php:9
 msgid "We will miss you"
-msgstr "Te echaremos de menos"
+msgstr ""
 
 #~ msgid "Texts"
 #~ msgstr "Textos"

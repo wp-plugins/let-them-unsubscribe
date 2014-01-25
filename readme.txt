@@ -27,11 +27,11 @@ Supported Languages (feel free to contribute other languages):
 == Installation ==
 
 1. In your WordPress administration, go to the Plugins page
-1. Activate the Let Them Unsubscribe plugin and a subpage for the plugin options will appear
+2. Activate the Let Them Unsubscribe plugin and a subpage for the plugin options will appear
    in your Users menu.
-1. Select the roles you'd like that those users who are linked to those roles, can delete their accounts.
-1. Write some text to show to the users in the Unsubscribe Page.
-1. A new page will be created for those users who are allowed to delete their accounts under Profile Menu.  
+3. Select the roles you'd like that those users who are linked to those roles, can delete their accounts.
+4. Write some text to show to the users in the Unsubscribe Page.
+5. A new page will be created for those users who are allowed to delete their accounts under Profile Menu.  
 
 == Frequently Asked Questions ==
 
@@ -43,6 +43,13 @@ No questions for the moment
 2. Page from where users can delete their own profiles 
 
 == Changelog ==
+
+= 1.1 =
+* Fixed security issues
+* Code refactored
+* Added link to unsubscribe in user profile
+* Added all roles to selection in settings (except for administrators)
+* Added uninstall functionality
 
 = 1.0 =
 * First release
