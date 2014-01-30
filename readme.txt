@@ -44,6 +44,9 @@ No questions for the moment
 
 == Changelog ==
 
+= 1.1.1 =
+* Compatibility with 3.8.1
+
 = 1.1 =
 * Fixed security issues
 * Code refactored

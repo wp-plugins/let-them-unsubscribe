@@ -3,7 +3,7 @@
 Plugin Name: Let Them Unsubscribe
 Plugin URI: 
 Description: Let the users delete their accounts 
-Version: 1.1
+Version: 1.1.1
 Author: igmoweb
 Author URI: http://www.igmoweb.com  
 */
