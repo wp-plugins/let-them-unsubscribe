@@ -6,7 +6,8 @@ function iw_ltu_get_settings() {
 	$defaults = array(
 		'roles' => array(),
 		'info-text' => __( 'Attention: All your data will be deleted!', IW_LTU_LANG_DOMAIN ),
-		'end-text' => __( 'We will miss you', IW_LTU_LANG_DOMAIN )
+		'end-text' => __( 'We will miss you', IW_LTU_LANG_DOMAIN ),
+		'redirect-page' => false
 	);
 
 	$settings = get_option( 'lt_unsubscribe_options', array() );
@@ -18,12 +19,15 @@ function iw_ltu_get_settings() {
  * Get the roles that can be erased
  */
 function iw_ltu_get_roles() {
-	global $wp_roles;
 
-	if ( $wp_roles == null )
-		$wp_roles = new WP_Roles();
+	$roles = array();
 
-	$roles = $wp_roles->roles;
+	$editable_roles = get_editable_roles();
+	foreach ( $editable_roles as $role => $details ) {
+		$name = translate_user_role( $details['name'] );
+		$roles[ $role ] = $name;
+	}
+
 	unset( $roles['administrator'] );
 
 	return apply_filters( 'ltu_settings_roles', $roles );

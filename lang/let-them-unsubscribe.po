@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Let Them Unsubscribe\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-25 22:21+0100\n"
-"PO-Revision-Date: 2014-01-25 22:24+0100\n"
+"PO-Revision-Date: 2014-10-05 16:45+0100\n"
 "Last-Translator: Ignacio <igmoweb@gmail.com>\n"
 "Language-Team: Ignacio Cruz\n"
 "MIME-Version: 1.0\n"
@@ -11,9 +11,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"Language: es_ES\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../let-them-unsubscribe.php:93
@@ -24,13 +24,11 @@ msgstr ""
 msgid "Let Them Unsubscribe Settings"
 msgstr ""
 
-#: ../let-them-unsubscribe.php:95
-#: ../let-them-unsubscribe.php:106
+#: ../let-them-unsubscribe.php:95 ../let-them-unsubscribe.php:106
 msgid "You do not have enough permissions to access to this page"
 msgstr ""
 
-#: ../let-them-unsubscribe.php:104
-#: ../let-them-unsubscribe.php:105
+#: ../let-them-unsubscribe.php:104 ../let-them-unsubscribe.php:105
 msgid "Delete your account"
 msgstr ""
 

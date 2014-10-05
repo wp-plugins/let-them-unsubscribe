@@ -20,7 +20,7 @@ class IW_LTU_Unsubscribe_Menu extends IW_LTU_Admin_Page {
 			<form action="" method="post">
 				<h3><?php echo nl2br( $settings['info-text'] ); ?></h3>
 				<?php wp_nonce_field( 'ltu_unsubscribe' ); ?>
-				<input type="submit" name="submit_ltu_delete_account" class="button-primary" value="<?php _e( 'Yes, delete my account', IW_LTU_LANG_DOMAIN ); ?>" onclick="confirm('<?php echo $ays_text; ?>')">
+				<input type="submit" name="submit_ltu_delete_account" class="button-primary" value="<?php _e( 'Yes, delete my account', IW_LTU_LANG_DOMAIN ); ?>" onclick="return confirm('<?php echo $ays_text; ?>')">
 			</form>
 		<?php
 	}
@@ -43,6 +43,11 @@ class IW_LTU_Unsubscribe_Menu extends IW_LTU_Admin_Page {
 
 			$settings = iw_ltu_get_settings();
 
+			if ( $settings['redirect-page'] && 'page' === get_post_type( $settings['redirect-page'] ) ) {
+				wp_redirect( get_permalink( $settings['redirect-page'] ) );
+				exit();
+			}
+			
 			$die_text = '<h3>' . $settings['end-text'] . '</h3>';
 			$die_text .= '<a href="' . home_url() . '">' . __( 'Go to home page', IW_LTU_LANG_DOMAIN ) . '</a>';
 			

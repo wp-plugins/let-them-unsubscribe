@@ -11,5 +11,12 @@ if ( version_compare( $current_version, '1.1', '<' ) ) {
 	delete_option( 'lt_unsubscribe_options' );
 	add_option( 'lt_unsubscribe_options', $settings, '', 'no' );
 
-	update_option( 'iw_ltu_version', '1.1' );
+}
+
+if ( version_compare( $current_version, '1.2', '<' ) ) {
+	$settings = iw_ltu_get_settings();
+	
+	delete_option( 'lt_unsubscribe_options' );
+	update_option( 'lt_unsubscribe_options', $settings );
+
 }

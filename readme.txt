@@ -1,10 +1,10 @@
 === Let Them Unsubscribe ===
 Contributors: igmoweb
 Tags: users, profiles 
-Donate link: http://example.com/
+Donate link: http://www.cancerresearchuk.org/support-us/donate
 Requires at least: 3.3
-Tested up to: 3.8.1
-Stable tag: 1.1
+Tested up to: 4.0
+Stable tag: 1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,8 +30,8 @@ Supported Languages (feel free to contribute other languages):
 2. Activate the Let Them Unsubscribe plugin and a subpage for the plugin options will appear
    in your Users menu.
 3. Select the roles you'd like that those users who are linked to those roles, can delete their accounts.
-4. Write some text to show to the users in the Unsubscribe Page.
-5. A new page will be created for those users who are allowed to delete their accounts under Profile Menu.  
+4. Write some text to show to the users in the Unsubscribe Page and optionally select a page to redirect when a user has deleted its account.
+5. A new admin page will be created for those users who are allowed to delete their accounts under Profile Menu.  
 
 == Frequently Asked Questions ==
 
@@ -43,6 +43,13 @@ No questions for the moment
 2. Page from where users can delete their own profiles 
 
 == Changelog ==
+
+= 1.2 =
+* Fixed: Translations were not working
+* Fixed: JS confirmation alert was deleting the accounts even if "Cancel" was clicked.
+* New feature: Possibility of redirect to a page after deleting an account.
+* New feature: Widget added.
+* Other minor improvements.
 
 = 1.1.1 =
 * Compatibility with 3.8.1

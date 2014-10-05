@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Let Them Unsubscribe
-Plugin URI: 
+Plugin URI: https://wordpress.org/plugins/let-them-unsubscribe/
 Description: Let the users delete their accounts 
-Version: 1.1.1
+Version: 1.2
 Author: igmoweb
 Author URI: http://www.igmoweb.com  
 */
@@ -48,24 +48,29 @@ class IW_LTU {
 		// Language domain
 		define( 'IW_LTU_LANG_DOMAIN', 'let-them-unsubscribe' );
 
-		define( 'IW_LTU_VERSION', '1.1' );
+		define( 'IW_LTU_VERSION', '1.2' );
 	}
 
 	/**
 	 * Include basic files for the plugin
 	 */
 	private function includes() {
+
+		include_once( IW_LTU_INCLUDES_DIR . 'helpers.php' );
+
 		if ( is_admin() ) {
-			include_once( IW_LTU_INCLUDES_DIR . 'admin-page.php' );
-			include_once( IW_LTU_INCLUDES_DIR . 'helpers.php' );
+			include_once( IW_LTU_INCLUDES_DIR . 'admin-page.php' );	
 			include_once( IW_LTU_ADMIN_DIR . 'settings-menu.php' );
 			include_once( IW_LTU_ADMIN_DIR . 'user-profile.php' );
 		}
+
+		include_once( IW_LTU_INCLUDES_DIR . '/widget.php' );
 	}
 
 	public function activate() {
 		$settings = iw_ltu_get_settings();
-		add_option( 'lt_unsubscribe_options', $settings, '', 'no' );
+		update_option( 'lt_unsubscribe_options', $settings );
+		update_option( 'iw_ltu_version', IW_LTU_VERSION );
 	}
 	
 	
@@ -76,9 +81,6 @@ class IW_LTU {
 	 * or the plugin one
 	 */
 	public function load_text_domain() {
-		$locale = apply_filters( 'plugin_locale', get_locale(), IW_LTU_LANG_DOMAIN );
-
-		load_textdomain( IW_LTU_LANG_DOMAIN, WP_LANG_DIR . '/' . IW_LTU_LANG_DOMAIN . '/' . IW_LTU_LANG_DOMAIN . '-' . $locale . '.mo' );
 		load_plugin_textdomain( IW_LTU_LANG_DOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 	}
 
@@ -109,12 +111,25 @@ class IW_LTU {
 			} 
 		}
 
-		$current_version = get_option( 'iw_ltu_version', '1.0' );
-		if ( IW_LTU_VERSION != $current_version ) {
-			// Upgrade the plugin
-			include_once( IW_LTU_INCLUDES_DIR . 'upgrade.php' );
+		$this->maybe_upgrade();
+
+	}
+
+	private function maybe_upgrade() {
+		$current_version = get_option( 'iw_ltu_version' );
+
+		if ( IW_LTU_VERSION === $current_version )
+			return;
+
+		if ( $current_version === false ) {
+			$this->activate();
+			return;
 		}
 
+		// Upgrade the plugin
+		include_once( IW_LTU_INCLUDES_DIR . 'upgrade.php' );
+
+		update_option( 'iw_ltu_version', IW_LTU_VERSION );
 	}
 
   

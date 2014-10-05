@@ -22,9 +22,12 @@ class IW_LTU_Settings_Menu extends IW_LTU_Admin_Page {
 		add_settings_section( 'ltu_general_options', __( 'Users who can delete their profiles', IW_LTU_LANG_DOMAIN ), null, $this->options_name );
 		add_settings_field( 'ltu_general_options_roles', __( 'Select one or more roles', IW_LTU_LANG_DOMAIN ), array( $this, 'render_roles_field' ), $this->options_name, 'ltu_general_options' );
 
-		add_settings_section( 'ltu_caption_options', __( 'Captions', IW_LTU_LANG_DOMAIN ), null, $this->options_name );
+		add_settings_section( 'ltu_caption_options', __( 'Options', IW_LTU_LANG_DOMAIN ), null, $this->options_name );
 		add_settings_field( 'ltu_caption_options_info_text', __( 'Text showed on Delete Profile Page', IW_LTU_LANG_DOMAIN ), array( $this, 'ltu_caption_options_info_text' ), $this->options_name, 'ltu_caption_options' );
 		add_settings_field( 'ltu_caption_options_end_text', __( 'Text showed once the user has deleted his profile', IW_LTU_LANG_DOMAIN ), array( $this, 'ltu_caption_options_end_text' ), $this->options_name, 'ltu_caption_options' );
+		
+		add_settings_section( 'ltu_misc_options', __( 'Misc', IW_LTU_LANG_DOMAIN ), null, $this->options_name );
+		add_settings_field( 'ltu_misc_options_redirect_page', __( 'Redirect to page', IW_LTU_LANG_DOMAIN ), array( $this, 'ltu_misc_options_redirect_page' ), $this->options_name, 'ltu_misc_options' );
 
 	}
 
@@ -44,11 +47,11 @@ class IW_LTU_Settings_Menu extends IW_LTU_Admin_Page {
 		$roles = iw_ltu_get_roles();
 
 		echo '<ul>';
-		foreach ( $roles as $role => $role_obj ) {
+		foreach ( $roles as $role => $role_name ) {
 			?>
 				<li>
 					<label>
-						<input type="checkbox" name="<?php echo $this->options_name; ?>[roles][<?php echo $role; ?>]" <?php checked( in_array( $role, $this->settings['roles'] ) ); ?>> <?php echo $role_obj['name']; ?>
+						<input type="checkbox" name="<?php echo $this->options_name; ?>[roles][<?php echo $role; ?>]" <?php checked( in_array( $role, $this->settings['roles'] ) ); ?>> <?php echo $role_name; ?>
 					</label>
 				</li>
 			<?php
@@ -57,6 +60,7 @@ class IW_LTU_Settings_Menu extends IW_LTU_Admin_Page {
 	}
 
 	public function ltu_caption_options_info_text() {
+
 		?>
 			<textarea name="<?php echo $this->options_name; ?>[info-text]" class="large-text" id="info-text" rows="5" cols="30"><?php echo esc_textarea( $this->settings['info-text'] ); ?></textarea>
 		<?php
@@ -64,8 +68,39 @@ class IW_LTU_Settings_Menu extends IW_LTU_Admin_Page {
 
 
 	public function ltu_caption_options_end_text() {
+		$disabled = $this->settings['redirect-page'] ? 'disabled="disabled"' : '';
+
 		?>
-			<textarea name="<?php echo $this->options_name; ?>[end-text]" class="large-text" id="end-text" rows="5" cols="30"><?php echo esc_textarea( $this->settings['end-text'] ); ?></textarea>
+			<textarea name="<?php echo $this->options_name; ?>[end-text]" <?php echo $disabled; ?> class="large-text" id="end-text" rows="5" cols="30"><?php echo esc_textarea( $this->settings['end-text'] ); ?></textarea>
+		<?php
+	}
+
+	public function ltu_misc_options_redirect_page() {
+		?>
+			<?php wp_dropdown_pages( array( 
+				'selected' => $this->settings['redirect-page'], 
+				'option_none_value' => '', 
+				'show_option_none' => __( '-- Select a page --', IW_LTU_LANG_DOMAIN ),
+				'name' => $this->options_name . '[redirect_page]',
+				'id' => 'redirect-page'
+			) ); ?>
+			
+			<span class="description"> <?php _e( 'Redirect to this page instead of display the text.', IW_LTU_LANG_DOMAIN ); ?></span>
+			<script>
+				jQuery(document).ready(function($) {
+					$('#redirect-page').change( function(e) {
+						var $this = $(this);
+							value = $this.val();
+
+						if ( ! value ) {
+							$('#end-text').attr('disabled',false);
+						}
+						else {
+							$('#end-text').attr('disabled',true);
+						}
+					})
+				});
+			</script>
 		<?php
 	}
 
@@ -97,10 +132,21 @@ class IW_LTU_Settings_Menu extends IW_LTU_Admin_Page {
 			else
 				$settings['info-text'] = stripslashes( $input['info-text'] );
 
-			if ( empty( $input['end-text'] ) )
+			if ( ! empty( $input['redirect_page'] ) && 'page' === get_post_type( absint( $input['redirect_page'] ) ) ) {
+				$settings['redirect-page'] = absint( $input['redirect_page'] );
+			}
+			else {
+				$settings['redirect-page'] = false;
+			}
+
+			if ( empty( $input['end-text'] ) && $settings['redirect-page'] === false )
 				add_settings_error( $this->options_name, 'empty-end-text', __( '<strong>End text</strong> field must not be empty', IW_LTU_LANG_DOMAIN ) );
-			else
+			elseif( empty( $input['end-text'] ) && $settings['redirect-page'] !== false )
+				$settings['end-text'] = $_settings['end-text'];
+			elseif ( ! empty( $input['end-text'] ) )
 				$settings['end-text'] = stripslashes( $input['end-text'] );
+
+			
 
 			$errors = get_settings_errors( $this->options_name );
 			if ( empty( $errors ) )
